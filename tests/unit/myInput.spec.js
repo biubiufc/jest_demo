@@ -22,4 +22,15 @@ describe("HelloWorld.vue", () => {
     const vm = wrapper.vm;
     expect(vm.$props.maxlength).toBe(2);
   });
+
+  it("No value pressing enter is invalid", () => {
+    const wrapper = shallowMount(MyInput, {
+      propsData: {
+        value: "11"
+      }
+    });
+    const input = wrapper.find("input");
+    input.trigger("keyup.enter");
+    expect(wrapper.emitted().input).toBeFalsy();
+  });
 });
