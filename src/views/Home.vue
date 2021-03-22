@@ -1,16 +1,21 @@
 <template>
   <div class="home">
-    <MyInput></MyInput>
+    <my-input v-model="inputValue" @handleInput="handleInput"></my-input>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import MyInput from "../components//MyInput.vue";
+import MyInput from "@/components//MyInput.vue";
 export default {
   name: "Home",
   components: {
     MyInput
+  },
+  data(){
+    return{
+      inputValue:""
+    }
   },
   methods: {
     expect(fn) {
@@ -23,6 +28,9 @@ export default {
           }
         }
       };
+    },
+    handleInput(value){
+      console.log(value)
     }
   }
 };
