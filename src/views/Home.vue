@@ -1,23 +1,28 @@
 <template>
   <div class="home">
-    <my-input v-model="inputValue" @handleInput="handleInput"></my-input>
+    <my-input v-model="myValue" @handleInput="handleInput" :maxlength="2"></my-input>
+    <actions></actions>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import MyInput from "@/components//MyInput.vue";
+import Actions from "../components/Acitions";
+
 export default {
   name: "Home",
   components: {
-    MyInput
+    MyInput,
+    Actions
   },
   data(){
     return{
-      inputValue:""
+      myValue:""
     }
   },
   methods: {
+    
     expect(fn) {
       return {
         tobe(val) {

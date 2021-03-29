@@ -3,7 +3,7 @@
     <input
       type="text"
       v-model="inputValue"
-      maxlength="maxlength"
+      :maxlength="maxlength"
       @keyup.enter="handleEnter"
       @input="handleInput"
       @focus="show=true"
@@ -16,8 +16,6 @@
   </div>
 </template>
 <script>
- import store from "../store";
- import { mapActions } from 'vuex'
 export default {
   data(){
     return{
@@ -32,7 +30,7 @@ export default {
   },
   computed:{
     historyRecord(){
-      return store.state.records
+      return this.$store.state.records || []
     }
   },
   props: {
@@ -42,12 +40,11 @@ export default {
     maxlength: Number
   },
   methods: {
-     ...mapActions(['incrementRecord']),
     handleEnter(event) {
       this.inputValue = ""
       if (!event.target.value) return;
-      store.dispatch('incrementRecord',event.target.value)
       this.$emit("handleEnter", event.target.value);
+      this.$store.dispatch('incrementRecord',event.target.value)
     },
     handleInput(event){
       this.$emit("input", event.target.value);
